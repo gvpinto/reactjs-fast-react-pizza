@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-function Button({ children, disabled, to }) {
-  const className = `
+function Button({ children, disabled, to, type }) {
+  const base = `
         inline-block 
         rounded-full 
         bg-yellow-400 
-        px-4 py-3 
+
         font-semibold 
         uppercase 
         tracking-wide
@@ -21,19 +21,22 @@ function Button({ children, disabled, to }) {
         active:bg-yellow-400
         disabled:cursor-not-allowed
         disabled:bg-slate-300
-        sm:px-6
-        sm:py-4
     `;
+
+  const styles = {
+    primary: base + " md:px-6 md:py-4 px-4 py-3 ",
+    small: base + " md:px-5 md:py-2.5 px-4 py-2 text-xs ",
+  };
 
   if (to)
     return (
-      <Link to={to} className={className}>
+      <Link to={to} className={styles[type]}>
         {children}
       </Link>
     );
 
   return (
-    <button disabled={disabled} className={className}>
+    <button disabled={disabled} className={styles[type]}>
       {children}
     </button>
   );
