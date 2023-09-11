@@ -29,7 +29,9 @@ const userSlice = createSlice({
         state.status = "idle";
       })
       .addCase(fetchAddress.rejected, (state, action) => {
-        state.error = action.error.message;
+        // state.error = action.error.message;
+        state.error =
+          "Unable to retrieve Address. Please enter a valid address to deliver the order.";
         state.status = "error";
       });
   },
